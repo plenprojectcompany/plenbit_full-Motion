@@ -5,7 +5,7 @@ Motion files for PLEN:bit full.
 
 ## Description of the Files
 
-- `firmware_for_motion-writer.hex`: Motion wrinting firmware for micro:bit
+- `firmware_for_motion-writer.hex`: Firmware of Motion Writer for micro:bit
 
 - `/MotionWriter`: Motion wrinting tools for PLEN:bit full
     - `/MotionData`: Motion Data
