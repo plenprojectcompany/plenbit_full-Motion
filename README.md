@@ -8,18 +8,18 @@ Motion files for PLEN:bit full.
 - `firmware_for_motion-writer.hex`: Motion wrinting firmware for micro:bit
 
 - `/MotionWriter`: Motion wrinting tools for PLEN:bit full
-    - `\MotionData`: Motion Data
+    - `/MotionData`: Motion Data
     - `MotionWriter.py`: Motion Writer python script
     - `firmware_for_MotionWriter.hex`: micro:bit firmware
     - `WritingHistory.txt`: Logs of Motion Writer
 
-- `MotionDeveloping`: Development kit for motion files
+- `/MotionDeveloping`: Development kit for motion files
     - `experiment.ts`: IK extensions for MakeCode
 
-- `MotionConverter`: Converting kit for PLEN:bit motion to PLEN:bit full motion 
+- `/MotionConverter`: Converting kit for PLEN:bit motion to PLEN:bit full motion 
     - `MotionConverter.py`: Motion Converter python script
-    - `\MotionData`: PLEN:bit motion data
-    - `\ConvertedData`: PLEN:bit full motion data
+    - `/MotionData`: PLEN:bit motion data
+    - `/ConvertedData`: PLEN:bit full motion data
 
 ## How to Use MotionWriter
 
