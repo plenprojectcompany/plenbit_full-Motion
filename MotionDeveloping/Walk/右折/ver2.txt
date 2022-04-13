@@ -1,9 +1,9 @@
-let KIclass = new KI()
-plenxxx.LedEye(false)
+let IKclass = new IK()
+plenbit_full.LedEye(0)
 
 
-plenxxx.ServoMove(500)
-plenxxx.ServoFree(-1)
+plenbit_full.ServoMove(500)
+plenbit_full.ServoFree(-1)
 let speed = 200
 let count = 1
 let debug = false
@@ -12,58 +12,58 @@ input.onButtonPressed(Button.A, function () {
 
     // 右に曲がる
 
-    for (let i = 0; i < 18; i++) plenxxx.servoAngleGoal[i] = 0
-    KIclass.Move(100)
+    for (let i = 0; i < 18; i++) plenbit_full.servoAngleGoal[i] = 0
+    IKclass.Move(100)
 
     for (let i = 0; i < count; i++) {
 
         //　右足上げる
-        KIclass.CalcFoot(5, 0, 0, -25, 2)
-        KIclass.SetR()
-        KIclass.CalcFoot(5, 0, 0, 10, 2)
-        KIclass.SetL()
-        //KIclass.Flip()
-        KIclass.Move(speed)
+        IKclass.CalcFoot(5, 0, 0, -25, 2)
+        IKclass.SetR()
+        IKclass.CalcFoot(5, 0, 0, 10, 2)
+        IKclass.SetL()
+        //IKclass.Flip()
+        IKclass.Move(speed)
 
         if (debug) while (input.buttonIsPressed(Button.A) == false) { }
 
-        KIclass.CalcFoot(10, 0, 0, 0, 2)
-        KIclass.SetR()
-        KIclass.CalcFoot(5, 0, 0, 10, 2)
-        KIclass.SetL()
-        //KIclass.Flip()
-        KIclass.Move(speed)
+        IKclass.CalcFoot(10, 0, 0, 0, 2)
+        IKclass.SetR()
+        IKclass.CalcFoot(5, 0, 0, 10, 2)
+        IKclass.SetL()
+        //IKclass.Flip()
+        IKclass.Move(speed)
 
         if (debug) while (input.buttonIsPressed(Button.A) == false) { }
 
         // 左足回す
-        plenxxx.servoAngleGoal[1] = 30
-        plenxxx.servoAngleGoal[11] = 20
-        KIclass.CalcFoot(10, 0, 0, 0, 2)
-        KIclass.SetR()
-        KIclass.CalcFoot(5, 0, 10, 15, 2)
-        KIclass.SetL()
-        //KIclass.Flip()
-        KIclass.Move(speed * 2)
+        plenbit_full.servoAngleGoal[1] = 30
+        plenbit_full.servoAngleGoal[11] = 20
+        IKclass.CalcFoot(10, 0, 0, 0, 2)
+        IKclass.SetR()
+        IKclass.CalcFoot(5, 0, 10, 15, 2)
+        IKclass.SetL()
+        //IKclass.Flip()
+        IKclass.Move(speed * 2)
         if (debug) while (input.buttonIsPressed(Button.A) == false) { }
 
         // 右足着く
-        plenxxx.servoAngleGoal[1] = 30
-        KIclass.CalcFoot(5, 0, 0, 0, 2)
-        KIclass.SetR()
-        KIclass.CalcFoot(5, 0, 0, 0, 2)
-        KIclass.SetL()
-        //KIclass.Flip()
-        KIclass.Move(speed)
+        plenbit_full.servoAngleGoal[1] = 30
+        IKclass.CalcFoot(5, 0, 0, 0, 2)
+        IKclass.SetR()
+        IKclass.CalcFoot(5, 0, 0, 0, 2)
+        IKclass.SetL()
+        //IKclass.Flip()
+        IKclass.Move(speed)
         if (debug) while (input.buttonIsPressed(Button.A) == false) { }
 
         if (i > 0) {
-            for (let i = 0; i < 18; i++) plenxxx.servoAngleGoal[i] = 0
-            KIclass.Move(speed)
+            for (let i = 0; i < 18; i++) plenbit_full.servoAngleGoal[i] = 0
+            IKclass.Move(speed)
         }
     }
 
-    for (let i = 0; i < 18; i++) plenxxx.servoAngleGoal[i] = 0
-    KIclass.Move(500)
-    plenxxx.ServoFree(-1)
+    for (let i = 0; i < 18; i++) plenbit_full.servoAngleGoal[i] = 0
+    IKclass.Move(500)
+    plenbit_full.ServoFree(-1)
 })

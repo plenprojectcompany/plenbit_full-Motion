@@ -1,24 +1,24 @@
-let KIclass = new KI()
-plenxxx.LedEye(false)
+let IKclass = new IK()
+plenbit_full.LedEye(0)
 
 /**
 
 input.onButtonPressed(Button.A, function () {
 
-    let readBuf = plenxxx.ReadEEPROM(212, 2)
+    let readBuf = plenbit_full.ReadEEPROM(212, 2)
     serial.writeLine(readBuf[0].toString())
     serial.writeLine(readBuf[1].toString())
 })
 
 input.onButtonPressed(Button.B, function () {
 
-    plenxxx.WriteEEPROM(213, 300)
+    plenbit_full.WriteEEPROM(213, 300)
 
 })
 
 input.onButtonPressed(Button.A, function () {
 
-    let readBuf = plenxxx.ReadEEPROM(0, 16)
+    let readBuf = plenbit_full.ReadEEPROM(0, 16)
     let servoInitArray:number[] = [0,0,0,0,0,0,0,0]
     for (let i = 0; i < 8; i++) {
         servoInitArray[i] = (readBuf[i * 2] << 8) | (readBuf[i * 2 + 1])
@@ -33,183 +33,183 @@ input.onButtonPressed(Button.B, function () {
 
     for (let i = 0; i < 8; i++) {
         let servoInitValue = servoInitArray[i]
-        plenxxx.WriteEEPROM(i * 2, (servoInitValue >> 8) & 0xFF)
-        plenxxx.WriteEEPROM(i * 2 + 1, servoInitValue & 0xFF)
+        plenbit_full.WriteEEPROM(i * 2, (servoInitValue >> 8) & 0xFF)
+        plenbit_full.WriteEEPROM(i * 2 + 1, servoInitValue & 0xFF)
     }
 })
 
 */
 
 
-plenxxx.ServoMove(500)
-plenxxx.ServoFree(-1)
+plenbit_full.ServoMove(500)
+plenbit_full.ServoFree(-1)
 let speed = 400
 let count = 5
 let debug = true
 
 input.onButtonPressed(Button.A, function () {
 
-    plenxxx.servoAngleGoal[2] = 10
-    plenxxx.servoAngleGoal[11] = 10
+    plenbit_full.servoAngleGoal[2] = 10
+    plenbit_full.servoAngleGoal[11] = 10
 
     for (let i = 0; i < count; i++) {
 
         if (i == 0) {
-            plenxxx.servoAngleGoal[1] = 0
-            plenxxx.servoAngleGoal[10] = 0
-            plenxxx.servoAngleGoal[0] = 0
-            plenxxx.servoAngleGoal[9] = 0
-            KIclass.CalcFoot(5, 5, 20, -10, 2)
-            KIclass.SetL()
-            KIclass.CalcFoot(2, -15, -5, 5, 1)
-            KIclass.SetR()
-            if (i % 2 == 1) KIclass.Flip()
-            KIclass.Move(speed)
+            plenbit_full.servoAngleGoal[1] = 0
+            plenbit_full.servoAngleGoal[10] = 0
+            plenbit_full.servoAngleGoal[0] = 0
+            plenbit_full.servoAngleGoal[9] = 0
+            IKclass.CalcFoot(5, 5, 20, -10, 2)
+            IKclass.SetL()
+            IKclass.CalcFoot(2, -15, -5, 5, 1)
+            IKclass.SetR()
+            if (i % 2 == 1) IKclass.Flip()
+            IKclass.Move(speed)
             if (debug) while (input.buttonIsPressed(Button.A) == false) { }
 
         }else{
-            plenxxx.servoAngleGoal[1] = 10
-            plenxxx.servoAngleGoal[10] = 10
-            plenxxx.servoAngleGoal[0] = 20
-            plenxxx.servoAngleGoal[9] = -20
-            KIclass.CalcFoot(8, 20, 20, 0, 1)
-            KIclass.SetL()
-            KIclass.CalcFoot(6, -15, 13, 5, 3)
-            KIclass.SetR()
-            if (i % 2 == 1) KIclass.Flip()
-            KIclass.Move(speed)
+            plenbit_full.servoAngleGoal[1] = 10
+            plenbit_full.servoAngleGoal[10] = 10
+            plenbit_full.servoAngleGoal[0] = 20
+            plenbit_full.servoAngleGoal[9] = -20
+            IKclass.CalcFoot(8, 20, 20, 0, 1)
+            IKclass.SetL()
+            IKclass.CalcFoot(6, -15, 13, 5, 3)
+            IKclass.SetR()
+            if (i % 2 == 1) IKclass.Flip()
+            IKclass.Move(speed)
 
             if (debug) while (input.buttonIsPressed(Button.A) == false) { }
 
-            plenxxx.servoAngleGoal[1] = 10
-            plenxxx.servoAngleGoal[10] = 10
-            plenxxx.servoAngleGoal[0] = 10
-            plenxxx.servoAngleGoal[9] = -10
-            KIclass.CalcFoot(8, 10, 15, 0, 1)
-            KIclass.SetL()
-            KIclass.CalcFoot(0, -15, 10, 15, 3)
-            KIclass.SetR()
-            plenxxx.servoAngleGoal[13] -= 9
-            if (i % 2 == 1) KIclass.Flip()
-            KIclass.Move(speed)
+            plenbit_full.servoAngleGoal[1] = 10
+            plenbit_full.servoAngleGoal[10] = 10
+            plenbit_full.servoAngleGoal[0] = 10
+            plenbit_full.servoAngleGoal[9] = -10
+            IKclass.CalcFoot(8, 10, 15, 0, 1)
+            IKclass.SetL()
+            IKclass.CalcFoot(0, -15, 10, 15, 3)
+            IKclass.SetR()
+            plenbit_full.servoAngleGoal[13] -= 9
+            if (i % 2 == 1) IKclass.Flip()
+            IKclass.Move(speed)
 
             if (debug) while (input.buttonIsPressed(Button.A) == false) { }
 
-            plenxxx.servoAngleGoal[1] = 10
-            plenxxx.servoAngleGoal[10] = 10
-            plenxxx.servoAngleGoal[0] = 0
-            plenxxx.servoAngleGoal[9] = 0
-            KIclass.CalcFoot(5, 5, 5, -5, 2)
-            KIclass.SetL()
-            KIclass.CalcFoot(2, -15, -5, 0, 1)
-            KIclass.SetR()
-            if (i % 2 == 1) KIclass.Flip()
-            KIclass.Move(speed)
+            plenbit_full.servoAngleGoal[1] = 10
+            plenbit_full.servoAngleGoal[10] = 10
+            plenbit_full.servoAngleGoal[0] = 0
+            plenbit_full.servoAngleGoal[9] = 0
+            IKclass.CalcFoot(5, 5, 5, -5, 2)
+            IKclass.SetL()
+            IKclass.CalcFoot(2, -15, -5, 0, 1)
+            IKclass.SetR()
+            if (i % 2 == 1) IKclass.Flip()
+            IKclass.Move(speed)
 
             if (debug) while (input.buttonIsPressed(Button.A) == false) { }
         }
 
         if (i != count - 1) {
 
-            plenxxx.servoAngleGoal[1] = 10
-            plenxxx.servoAngleGoal[10] = 10
-            plenxxx.servoAngleGoal[0] = -10
-            plenxxx.servoAngleGoal[9] = 10
-            KIclass.CalcFoot(15, 0, -5, 10, 3)
-            KIclass.SetL()
-            KIclass.CalcFoot(5, -15, 0, 10, 0)
-            KIclass.SetR()
-            if (i % 2 == 1) KIclass.Flip()
-            KIclass.Move(speed)
+            plenbit_full.servoAngleGoal[1] = 10
+            plenbit_full.servoAngleGoal[10] = 10
+            plenbit_full.servoAngleGoal[0] = -10
+            plenbit_full.servoAngleGoal[9] = 10
+            IKclass.CalcFoot(15, 0, -5, 10, 3)
+            IKclass.SetL()
+            IKclass.CalcFoot(5, -15, 0, 10, 0)
+            IKclass.SetR()
+            if (i % 2 == 1) IKclass.Flip()
+            IKclass.Move(speed)
 
             if (debug) while (input.buttonIsPressed(Button.A) == false) { }
 
-            plenxxx.servoAngleGoal[1] = 10
-            plenxxx.servoAngleGoal[10] = 10
-            plenxxx.servoAngleGoal[0] = -20
-            plenxxx.servoAngleGoal[9] = 20
-            KIclass.CalcFoot(6, -15, 0, -3, 3)
-            KIclass.SetL()
-            KIclass.CalcFoot(6, -5, 0, 3, 0)
-            KIclass.SetR()
-            if (i % 2 == 1) KIclass.Flip()
-            KIclass.Move(speed)
+            plenbit_full.servoAngleGoal[1] = 10
+            plenbit_full.servoAngleGoal[10] = 10
+            plenbit_full.servoAngleGoal[0] = -20
+            plenbit_full.servoAngleGoal[9] = 20
+            IKclass.CalcFoot(6, -15, 0, -3, 3)
+            IKclass.SetL()
+            IKclass.CalcFoot(6, -5, 0, 3, 0)
+            IKclass.SetR()
+            if (i % 2 == 1) IKclass.Flip()
+            IKclass.Move(speed)
 
             if (debug) while (input.buttonIsPressed(Button.A) == false) { }
         }
     }
 
 
-    for (let i = 0; i < 18; i++) plenxxx.servoAngleGoal[i] = 0
-    KIclass.Move(speed * 2)
+    for (let i = 0; i < 18; i++) plenbit_full.servoAngleGoal[i] = 0
+    IKclass.Move(speed * 2)
 
 
-    //KIclass.Bezier()
+    //IKclass.Bezier()
 })
 
 input.onButtonPressed(Button.B, function () {
 
 
-    KIclass.CalcFoot(10, 5, 10, 10, 2)
-    KIclass.SetL()
-    KIclass.CalcFoot(10, 5, 10, 10, 1)
-    KIclass.SetR()
-    KIclass.Move(speed)
+    IKclass.CalcFoot(10, 5, 10, 10, 2)
+    IKclass.SetL()
+    IKclass.CalcFoot(10, 5, 10, 10, 1)
+    IKclass.SetR()
+    IKclass.Move(speed)
     return 0
 
     for (let i = 0; i < 3; i++) {
         for (let i = 0; i < 10; i++) {
-            KIclass.CalcFoot(i, 0, 0)
-            KIclass.SetL()
-            KIclass.SetR()
-            KIclass.Move(75)
+            IKclass.CalcFoot(i, 0, 0)
+            IKclass.SetL()
+            IKclass.SetR()
+            IKclass.Move(75)
         }
         for (let i = 9; i >= 0; i--) {
-            KIclass.CalcFoot(i, 0, 0)
-            KIclass.SetL()
-            KIclass.SetR()
-            KIclass.Move(75)
+            IKclass.CalcFoot(i, 0, 0)
+            IKclass.SetL()
+            IKclass.SetR()
+            IKclass.Move(75)
         }
     }
 
 
     pause(100)
 
-    KIclass.CalcFoot(10, 0, 0)
-    KIclass.SetL()
-    KIclass.SetR()
+    IKclass.CalcFoot(10, 0, 0)
+    IKclass.SetL()
+    IKclass.SetR()
 
-    KIclass.Move(1000)
+    IKclass.Move(1000)
 
     for (let i = 0; i < 3; i++) {
         for (let i = 0; i < 20; i++) {
-            KIclass.CalcFoot(10, i)
-            KIclass.SetL()
-            plenxxx.servoAngleGoal[2] = i
-            KIclass.Move(20)
+            IKclass.CalcFoot(10, i)
+            IKclass.SetL()
+            plenbit_full.servoAngleGoal[2] = i
+            IKclass.Move(20)
         }
         for (let i = 19; i >= 0; i--) {
-            KIclass.CalcFoot(10, i)
-            KIclass.SetL()
-            plenxxx.servoAngleGoal[2] = i
-            KIclass.Move(20)
+            IKclass.CalcFoot(10, i)
+            IKclass.SetL()
+            plenbit_full.servoAngleGoal[2] = i
+            IKclass.Move(20)
         }
         for (let i = 0; i < 20; i++) {
-            KIclass.CalcFoot(10, i)
-            KIclass.SetR()
-            plenxxx.servoAngleGoal[11] = i
-            KIclass.Move(20)
+            IKclass.CalcFoot(10, i)
+            IKclass.SetR()
+            plenbit_full.servoAngleGoal[11] = i
+            IKclass.Move(20)
         }
         for (let i = 20; i >= 0; i--) {
-            KIclass.CalcFoot(10, i)
-            KIclass.SetR()
-            plenxxx.servoAngleGoal[11] = i
-            KIclass.Move(20)
+            IKclass.CalcFoot(10, i)
+            IKclass.SetR()
+            plenbit_full.servoAngleGoal[11] = i
+            IKclass.Move(20)
         }
     }
 
-    KIclass.CalcFoot(0, 0, 0)
-    KIclass.SetL()
-    KIclass.SetR()
-    KIclass.Move(500)
+    IKclass.CalcFoot(0, 0, 0)
+    IKclass.SetL()
+    IKclass.SetR()
+    IKclass.Move(500)
 })

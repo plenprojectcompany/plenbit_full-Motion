@@ -1,9 +1,9 @@
-let KIclass = new KI()
-plenxxx.LedEye(false)
+let IKclass = new IK()
+plenbit_full.LedEye(0)
 
 
-plenxxx.ServoMove(500)
-plenxxx.ServoFree(-1)
+plenbit_full.ServoMove(500)
+plenbit_full.ServoFree(-1)
 let speed = 600
 let count = 6
 let debug = false
@@ -48,16 +48,16 @@ input.onButtonPressed(Button.A, function () {
                 if(anglesValue.length == 18){
                     let angles:number[] = []
                     for (let j of anglesValue) angles.push(parseInt(j))
-                    plenxxx.servoAngleGoal = angles
+                    plenbit_full.servoAngleGoal = angles
 
                     basic.showString(flameNumber.toString()[flameNumber.toString().length - 1],0)
 
                     if(flameNumber >= 2 && flameNumber <=10){
-                        plenxxx.servoAngleGoal[7] += 10
-                        plenxxx.servoAngleGoal[16] += 10
+                        plenbit_full.servoAngleGoal[7] += 10
+                        plenbit_full.servoAngleGoal[16] += 10
                     }
 
-                    KIclass.Move(time)
+                    IKclass.Move(time)
 
                     if (debug) while (input.buttonIsPressed(Button.A) == false) { }
                 }

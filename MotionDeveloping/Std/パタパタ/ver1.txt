@@ -1,41 +1,41 @@
-let KIclass = new KI()
-plenxxx.LedEye(false)
+let IKclass = new IK()
+plenbit_full.LedEye(0)
 
 
-plenxxx.ServoMove(500)
-plenxxx.ServoFree(-1)
+plenbit_full.ServoMove(500)
+plenbit_full.ServoFree(-1)
 let speed = 125
 let count = 2
 let debug = false
 
 input.onButtonPressed(Button.A, function () {
 
-    for (let i = 0; i < 18; i++) plenxxx.servoAngleGoal[i] = 0
-    KIclass.Move(100)
+    for (let i = 0; i < 18; i++) plenbit_full.servoAngleGoal[i] = 0
+    IKclass.Move(100)
 
     for (let i = 0; i < count; i++) {
 
-        plenxxx.servoAngleGoal[2] = 30
-        plenxxx.servoAngleGoal[11] = 30
-        KIclass.Move(speed)
+        plenbit_full.servoAngleGoal[2] = 30
+        plenbit_full.servoAngleGoal[11] = 30
+        IKclass.Move(speed)
 
         if (debug) while (input.buttonIsPressed(Button.A) == false) { }
 
-        plenxxx.servoAngleGoal[3] = 10
-        plenxxx.servoAngleGoal[12] = 10
-        KIclass.Move(speed)
+        plenbit_full.servoAngleGoal[3] = 10
+        plenbit_full.servoAngleGoal[12] = 10
+        IKclass.Move(speed)
 
         if (debug) while (input.buttonIsPressed(Button.A) == false) { }
 
-        plenxxx.servoAngleGoal[2] = 0
-        plenxxx.servoAngleGoal[11] = 0
-        plenxxx.servoAngleGoal[3] = 0
-        plenxxx.servoAngleGoal[12] = 0
-        KIclass.Move(speed)
+        plenbit_full.servoAngleGoal[2] = 0
+        plenbit_full.servoAngleGoal[11] = 0
+        plenbit_full.servoAngleGoal[3] = 0
+        plenbit_full.servoAngleGoal[12] = 0
+        IKclass.Move(speed)
 
         if (debug) while (input.buttonIsPressed(Button.A) == false) { }
     }
 
-    for (let i = 0; i < 18; i++) plenxxx.servoAngleGoal[i] = 0
-    KIclass.Move(500)
+    for (let i = 0; i < 18; i++) plenbit_full.servoAngleGoal[i] = 0
+    IKclass.Move(500)
 })
