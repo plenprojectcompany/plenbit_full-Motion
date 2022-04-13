@@ -5,10 +5,12 @@ import re
 import datetime
 import time
 import json
+import random, string
+from pathlib import Path
 
 # フルサイズPLENモーション書き込みプログラム
 # バージョン(max 65536)
-Version = "0.0.0"
+Version = "0.0.3"
 
 # デバッグモード
 Debug = False
@@ -16,8 +18,13 @@ Debug = False
 # モーションデータの相対パス
 MotionDataPath = "MotionData/"
 
-sendId = -1
+# 書き込み履歴の相対パス
+WrintingHistoryPath = ""
 
+# 書き込みID
+wrintingID = ''.join(random.choices(string.ascii_letters + string.digits, k=5))
+
+sendId = -1
 
 def Send(value):
     global sendId
@@ -164,6 +171,11 @@ try:
                             + str(count + 1)
                             + "行目に誤りがあります. "
                         )
+                    for i in range(18):
+                        if(motionAngles[i] > 127):
+                            motionAngles[i] = 127
+                        if(motionAngles[i] < -127):
+                            motionAngles[i] = -127
                     motionDataArray.extend(motionAngles)
                 count += 1
         f.close()
@@ -188,10 +200,12 @@ try:
 
     # バージョン情報送信
     dtNow = datetime.datetime.now()
+    wrintingTime = datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S")
     infomation = {
         'detail':'PLEN:xxx motion data',
         'ver':Version,
-        'time':datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S")
+        'time':wrintingTime,
+        'id':wrintingID
         }
 
     infomationbBytearray = bytearray(json.dumps(infomation).encode("utf-8"))
@@ -210,7 +224,13 @@ try:
     # ポートを閉じる
     ser.close()
 
-    print("\nモーションデータの転送が完了しました！")
+    # 書き込み履歴に記録する
+    filePath = Path(WrintingHistoryPath+"WritingHistory.txt")
+    s = filePath.read_text()
+    s = wrintingTime+","+Version+","+wrintingID+"\n" + s
+    filePath.write_text(s)
+
+    print("\nモーションデータの転送が完了しました！ "+"書き込みID:"+wrintingID)
     if Debug:
         print(
             "EEPROM空き容量："

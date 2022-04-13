@@ -1,0 +1,76 @@
+let KIclass = new KI()
+plenbit_full.LedEye(0)
+
+
+plenbit_full.ServoMove(500)
+plenbit_full.ServoFree(-1)
+let speed = 200
+let count = 1
+let debug = false
+
+input.onButtonPressed(Button.A, function () {
+
+    // 右に曲がる
+
+    for (let i = 0; i < 18; i++) plenbit_full.servoAngleGoal[i] = 0
+    KIclass.Move(100)
+
+    for (let i = 0; i < count; i++) {
+
+        //　右足上げる
+        KIclass.CalcFoot(5, 0, 0, -30, 2)
+        KIclass.SetR()
+        KIclass.CalcFoot(5, 0, -3, 10, 2)
+        KIclass.SetL()
+        plenbit_full.servoAngleGoal[16] -= 20
+        KIclass.Flip()
+        KIclass.Move(speed)
+        KIclass.Flip()
+
+        if (debug) while (input.buttonIsPressed(Button.A) == false) { }
+
+        KIclass.CalcFoot(10, 0, 0, -13, 2)
+        KIclass.SetR()
+        KIclass.CalcFoot(5, 0, -3, 20, 2)
+        KIclass.SetL()
+        plenbit_full.servoAngleGoal[16] -= 20
+        plenbit_full.servoAngleGoal[2] = 45
+        KIclass.Flip()
+        KIclass.Move(speed)
+        KIclass.Flip()
+
+        if (debug) while (input.buttonIsPressed(Button.A) == false) { }
+
+        plenbit_full.servoAngleGoal[14] -= 50
+        plenbit_full.servoAngleGoal[1] -= 20
+        plenbit_full.servoAngleGoal[10] += 20
+        plenbit_full.servoAngleGoal[2] = 90
+        plenbit_full.servoAngleGoal[9] -= 20
+        KIclass.Flip()
+        KIclass.Move(speed)
+        KIclass.Move(speed)
+        KIclass.Flip()
+
+        if (debug) while (input.buttonIsPressed(Button.A) == false) { }
+
+        plenbit_full.servoAngleGoal[14] += 100
+        plenbit_full.servoAngleGoal[1] += 10
+        plenbit_full.servoAngleGoal[10] -= 20
+        plenbit_full.servoAngleGoal[2] = 0
+        plenbit_full.servoAngleGoal[0] = 60
+        plenbit_full.servoAngleGoal[3] = -30
+        plenbit_full.servoAngleGoal[9] -= 40
+        plenbit_full.servoAngleGoal[11] += 20
+        KIclass.Flip()
+        KIclass.Move(speed / 2)
+        KIclass.Move(speed)
+        KIclass.Flip()
+
+        if (debug) while (input.buttonIsPressed(Button.A) == false) { }
+    }
+
+    for (let i = 0; i < 18; i++) plenbit_full.servoAngleGoal[i] = 0
+    KIclass.Move(500)
+    KIclass.Move(500)
+    plenbit_full.ServoFree(-1)
+})
