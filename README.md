@@ -1,7 +1,7 @@
 Motion for PLEN:bit full | PLEN Project Company Inc.
 ===============================================================================
 
-Motion files (JSON) for PLEN:bit full.
+Motion files for PLEN:bit full.
 
 ## Description of the Files
 
